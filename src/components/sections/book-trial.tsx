@@ -470,33 +470,35 @@ export function BookTrial() {
             className="lg:col-span-2 flex flex-col gap-3 sm:gap-4 lg:gap-6 min-w-0 w-full"
           >
             {/* WhatsApp Card */}
-            <motion.a
-              variants={staggerItem}
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block rounded-xl sm:rounded-2xl border border-[#25D366]/20 bg-[#25D366]/5 p-4 sm:p-6 hover:border-[#25D366]/40 hover:bg-[#25D366]/10 transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#25D366] flex items-center justify-center shadow-md flex-shrink-0">
-                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            {!submitted && (
+              <motion.a
+                variants={staggerItem}
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-xl sm:rounded-2xl border border-[#25D366]/20 bg-[#25D366]/5 p-4 sm:p-6 hover:border-[#25D366]/40 hover:bg-[#25D366]/10 transition-all duration-300"
+              >
+                <div className="flex items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#25D366] flex items-center justify-center shadow-md flex-shrink-0">
+                    <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-charcoal">
+                      Chat on WhatsApp
+                    </h4>
+                    <p className="text-[10px] sm:text-xs text-warm-gray">Instant replies</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-charcoal">
-                    Chat on WhatsApp
-                  </h4>
-                  <p className="text-[10px] sm:text-xs text-warm-gray">Instant replies</p>
-                </div>
-              </div>
-              <p className="text-xs sm:text-sm text-warm-gray leading-relaxed hidden lg:block">
-                Have questions? Reach us instantly on WhatsApp for quick
-                assistance and booking help.
-              </p>
-              <span className="inline-flex items-center gap-1.5 text-[#25D366] text-xs sm:text-sm font-medium mt-2 sm:mt-3 group-hover:gap-2.5 transition-all">
-                Start Chat
-                <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              </span>
-            </motion.a>
+                <p className="text-xs sm:text-sm text-warm-gray leading-relaxed hidden lg:block">
+                  Have questions? Reach us instantly on WhatsApp for quick
+                  assistance and booking help.
+                </p>
+                <span className="inline-flex items-center gap-1.5 text-[#25D366] text-xs sm:text-sm font-medium mt-2 sm:mt-3 group-hover:gap-2.5 transition-all">
+                  Start Chat
+                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                </span>
+              </motion.a>
+            )}
 
             {/* Call Card */}
             <motion.a
