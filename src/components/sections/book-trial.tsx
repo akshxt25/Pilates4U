@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { fadeUp, viewportOnce, staggerContainer, staggerItem } from "@/lib/animations";
-import { BUSINESS, WHATSAPP_URL } from "@/lib/constants";
+import { BUSINESS, WHATSAPP_URL, GOOGLE_SHEETS_URL } from "@/lib/constants";
 import {
   Phone,
   MessageCircle,
@@ -93,6 +93,7 @@ export function BookTrial() {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const availableDates = useMemo(() => getNextNDates(14), []);
@@ -110,27 +111,40 @@ export function BookTrial() {
 
   /* ── Submit ─────────────────────────────────────────────────────────── */
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const err = validate();
     setErrors(err);
     if (Object.keys(err).length > 0) return;
 
-    // Build WhatsApp message with booking details
+    setIsSubmitting(true);
     const session = SESSION_TYPES.find((s) => s.key === sessionType)!;
-    const msg = [
-      `Hi! I'd like to book a trial session.`,
-      ``,
-      `*Name:* ${name.trim()}`,
-      `*Phone:* ${normalizePhone(phone)}`,
-      `*Session Type:* ${session.label} (₹${session.fee})`,
-      `*Preferred Date:* ${formatDateLabel(selectedDate)} (${selectedDate})`,
-      `*Preferred Time:* ${selectedSlot}`,
-    ].join("\n");
 
-    const waURL = `https://wa.me/${BUSINESS.phoneRaw}?text=${encodeURIComponent(msg)}`;
-    window.open(waURL, "_blank", "noopener,noreferrer");
-    setSubmitted(true);
+    try {
+      const formParams = new URLSearchParams();
+      formParams.append("Name", name.trim());
+      formParams.append("Phone", normalizePhone(phone));
+      formParams.append("SessionType", session.label);
+      formParams.append("Fee", session.fee.toString());
+      formParams.append("Date", selectedDate);
+      formParams.append("Time", selectedSlot);
+
+      await fetch(GOOGLE_SHEETS_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formParams.toString(),
+        mode: "no-cors",
+      });
+      
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Error submitting form", error);
+      alert("Something went wrong. Please try again or contact us via WhatsApp.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   /* ── Fee display ────────────────────────────────────────────────────── */
@@ -394,10 +408,11 @@ export function BookTrial() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="w-full group flex items-center justify-center gap-2 rounded-full bg-charcoal text-ivory px-6 sm:px-8 py-3.5 sm:py-4 text-sm font-semibold tracking-wide hover:bg-charcoal/90 transition-all hover:shadow-lg hover:shadow-charcoal/10 active:scale-[0.98]"
+                      disabled={isSubmitting}
+                      className="w-full group flex items-center justify-center gap-2 rounded-full bg-charcoal text-ivory px-6 sm:px-8 py-3.5 sm:py-4 text-sm font-semibold tracking-wide hover:bg-charcoal/90 transition-all hover:shadow-lg hover:shadow-charcoal/10 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      Book My Trial Session
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      {isSubmitting ? "Submitting..." : "Book My Trial Session"}
+                      {!isSubmitting && <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
                     </button>
                   </form>
                 </motion.div>
@@ -425,8 +440,8 @@ export function BookTrial() {
                     We've received your request!
                   </h3>
                   <p className="text-warm-gray max-w-md mx-auto mb-8">
-                    Your booking details have been sent via WhatsApp. Our team
-                    will confirm your slot shortly. You can also reach us
+                    We have received your booking request! Our team
+                    will contact you shortly to confirm your slot. You can also reach us
                     directly for any queries.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -439,20 +454,7 @@ export function BookTrial() {
                       <MessageCircle className="w-4 h-4" />
                       WhatsApp Us
                     </a>
-                    <button
-                      onClick={() => {
-                        setSubmitted(false);
-                        setName("");
-                        setPhone("");
-                        setSelectedDate("");
-                        setSelectedSlot("");
-                        setSessionType("group");
-                        setErrors({});
-                      }}
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-sand text-charcoal px-8 py-3.5 text-sm font-medium tracking-wide hover:bg-cream transition-all"
-                    >
-                      Book Another Session
-                    </button>
+
                   </div>
                 </motion.div>
               )}

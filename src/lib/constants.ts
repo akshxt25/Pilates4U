@@ -21,6 +21,7 @@ export const BUSINESS = {
 
 export const FORM_URL = `https://wa.me/${BUSINESS.phoneRaw}`;
 export const WHATSAPP_URL = `https://wa.me/${BUSINESS.phoneRaw}`;
+export const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbwlDl2NGxYAxhIwsIAUGT4bSnqMF9p1ATTBmfxgCLe01uXmcp_1Pb6w50RYtNFPUrU_/exec";
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
