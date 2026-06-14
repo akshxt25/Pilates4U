@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { staggerContainer, staggerItem } from "@/lib/animations";
-import { FORM_URL, HERO_STATS } from "@/lib/constants";
+import { HERO_STATS } from "@/lib/constants";
 import { ChevronDown } from "lucide-react";
 import heroBg from "@/assets/images/hero-bg.png";
 
@@ -63,9 +63,11 @@ export function Hero() {
             className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
           >
             <a
-              href={FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#book"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#book")?.scrollIntoView({ behavior: "smooth" });
+              }}
               className="inline-flex items-center justify-center rounded-full bg-champagne text-charcoal px-8 py-3.5 text-sm font-semibold tracking-wide hover:bg-champagne/90 transition-all hover:shadow-lg hover:shadow-champagne/20"
             >
               Book Your Session

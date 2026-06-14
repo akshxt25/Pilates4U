@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { fadeUp, viewportOnce } from "@/lib/animations";
-import { FORM_URL } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
 
 export function CTA() {
@@ -26,9 +25,11 @@ export function CTA() {
           </p>
           <div className="mt-10">
             <a
-              href={FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#book"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#book")?.scrollIntoView({ behavior: "smooth" });
+              }}
               className="group inline-flex items-center gap-2 rounded-full bg-champagne text-charcoal px-10 py-4 text-base font-semibold tracking-wide hover:bg-champagne/90 transition-all hover:shadow-lg hover:shadow-champagne/20"
             >
               Start Your Journey

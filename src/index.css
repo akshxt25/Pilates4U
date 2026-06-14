@@ -224,3 +224,19 @@
 .whatsapp-float {
     animation: whatsapp-pulse 2s ease-in-out infinite;
 }
+
+/* ── Scrollbar Hide (for date pills horizontal scroll) ─────────────────────── */
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* ── Booking Form Focus Ring ───────────────────────────────────────────────── */
+
+#book input:focus {
+    box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+}

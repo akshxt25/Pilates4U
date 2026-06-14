@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { NAV_ITEMS, BUSINESS, FORM_URL } from "@/lib/constants";
+import { NAV_ITEMS, BUSINESS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -86,7 +86,7 @@ export function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Button
-              onClick={() => window.open(FORM_URL, "_blank", "noopener,noreferrer")}
+              onClick={() => document.querySelector("#book")?.scrollIntoView({ behavior: "smooth" })}
               className={cn(
                 "rounded-full px-6 font-medium text-sm tracking-wide transition-all",
                 scrolled
@@ -142,7 +142,7 @@ export function Navbar() {
               <Button
                 onClick={() => {
                   setMobileOpen(false);
-                  window.open(FORM_URL, "_blank", "noopener,noreferrer");
+                  document.querySelector("#book")?.scrollIntoView({ behavior: "smooth" });
                 }}
                 className="mt-4 bg-champagne text-charcoal hover:bg-champagne/90 rounded-full px-8 py-3 font-medium text-base"
               >
