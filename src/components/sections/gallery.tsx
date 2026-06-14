@@ -1,38 +1,35 @@
 import { motion } from "motion/react";
-import { fadeUp, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations";
-import { GALLERY_IMAGES } from "@/lib/constants";
-
-// Import all gallery images
-import imgReformer from "@/assets/images/gallery-reformer.png";
-import imgSession from "@/assets/images/gallery-session.png";
-import imgDetails from "@/assets/images/gallery-details.png";
-import imgStretch from "@/assets/images/gallery-stretch.png";
-import imgStudio from "@/assets/images/about-studio.png";
-import imgHero from "@/assets/images/hero-bg.png";
-
-const imageMap: Record<string, string> = {
-  "gallery-reformer.png": imgReformer,
-  "gallery-session.png": imgSession,
-  "gallery-details.png": imgDetails,
-  "gallery-stretch.png": imgStretch,
-  "about-studio.png": imgStudio,
-  "hero-bg.png": imgHero,
-};
-
-// Define span sizes for masonry-like grid
-const spanClasses = [
-  "col-span-1 row-span-2",    // tall
-  "col-span-1 row-span-1",    // normal
-  "col-span-1 row-span-1",    // normal
-  "col-span-1 row-span-2",    // tall
-  "col-span-1 row-span-1",    // normal
-  "col-span-1 row-span-1",    // normal
-];
+import { fadeUp, viewportOnce } from "@/lib/animations";
+import { STUDIO_MEDIA } from "@/lib/constants";
 
 export function Gallery() {
+  // Group media into columns: alternating between 1 item and 2 items
+  const columns = [];
+  let currentIndex = 0;
+  let isSingle = true;
+
+  while (currentIndex < STUDIO_MEDIA.length) {
+    if (isSingle) {
+      columns.push([STUDIO_MEDIA[currentIndex]]);
+      currentIndex += 1;
+    } else {
+      if (currentIndex + 1 < STUDIO_MEDIA.length) {
+        columns.push([STUDIO_MEDIA[currentIndex], STUDIO_MEDIA[currentIndex + 1]]);
+        currentIndex += 2;
+      } else {
+        columns.push([STUDIO_MEDIA[currentIndex]]);
+        currentIndex += 1;
+      }
+    }
+    isSingle = !isSingle;
+  }
+
+  // Duplicate columns twice to ensure a perfect 50% translation loop
+  const duplicatedColumns = [...columns, ...columns];
+
   return (
     <section id="gallery" className="relative py-24 lg:py-32 bg-cream overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto px-6 lg:px-8 max-w-full">
         {/* Header */}
         <motion.div
           variants={fadeUp}
@@ -49,29 +46,53 @@ export function Gallery() {
           </h2>
         </motion.div>
 
-        {/* Gallery Grid */}
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="grid grid-cols-2 lg:grid-cols-3 auto-rows-[200px] lg:auto-rows-[220px] gap-4"
-        >
-          {GALLERY_IMAGES.map((img, i) => (
-            <motion.div
-              key={img.src}
-              variants={staggerItem}
-              className={`${spanClasses[i]} group relative rounded-2xl overflow-hidden cursor-pointer`}
-            >
-              <img
-                src={imageMap[img.src]}
-                alt={img.alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-colors duration-500" />
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Marquee Gallery */}
+        <div className="relative w-full overflow-hidden flex items-center py-4">
+          {/* Fading edges for a cleaner look */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-r from-cream to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-l from-cream to-transparent z-10 pointer-events-none" />
+
+          <div 
+            className="flex animate-marquee w-max"
+            style={{ "--marquee-duration": "90s" } as React.CSSProperties}
+          >
+            {duplicatedColumns.map((col, colIndex) => (
+              <div 
+                key={`col-${colIndex}`}
+                className="flex flex-col gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0 w-[280px] sm:w-[450px]"
+              >
+                {col.map((media, itemIndex) => (
+                  <div 
+                    key={`${media.src}-${colIndex}-${itemIndex}`} 
+                    className={`relative w-full rounded-2xl overflow-hidden group ${
+                      col.length === 1 
+                        ? 'h-[400px] sm:h-[600px]' 
+                        : 'h-[192px] sm:h-[288px]'
+                    }`}
+                  >
+                    {media.type === "video" ? (
+                      <video
+                        src={media.src}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <img
+                        src={media.src}
+                        alt="Pilates Studio"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors duration-500" />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,7 +1,5 @@
 import { motion } from "motion/react";
 import { slideInLeft, slideInRight, viewportOnce } from "@/lib/animations";
-import aboutImg from "@/assets/images/about-studio.png";
-
 export function About() {
   return (
     <section id="about" className="relative py-24 lg:py-32 bg-ivory overflow-hidden">
@@ -17,8 +15,8 @@ export function About() {
           >
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] lg:aspect-[3/4]">
               <img
-                src={aboutImg}
-                alt="Pilates For You studio interior"
+                src="/media/about/about-studio.jpg"
+                alt="Inside Pilates For You Studio"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent" />

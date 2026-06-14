@@ -16,8 +16,8 @@ import {
 /* ── Session types ──────────────────────────────────────────────────────────── */
 
 const SESSION_TYPES = [
-  { key: "group", label: "Group Session", fee: 500 },
-  { key: "personal", label: "Personal Training", fee: 1000 },
+  { key: "group", label: "Group Session", fee: 499 },
+  { key: "personal", label: "Personal Training", fee: 999 },
 ] as const;
 
 type SessionKey = (typeof SESSION_TYPES)[number]["key"];

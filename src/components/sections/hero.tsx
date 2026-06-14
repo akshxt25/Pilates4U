@@ -2,8 +2,6 @@ import { motion } from "motion/react";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import { HERO_STATS } from "@/lib/constants";
 import { ChevronDown } from "lucide-react";
-import heroBg from "@/assets/images/hero-bg.png";
-
 export function Hero() {
   const scrollToNext = () => {
     document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
@@ -17,7 +15,7 @@ export function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={heroBg}
+          src="/media/hero/hero-bg.jpg"
           alt="Premium Pilates studio"
           className="w-full h-full object-cover"
         />

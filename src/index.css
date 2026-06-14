@@ -240,3 +240,17 @@
 #book input:focus {
     box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
 }
+
+/* ── Marquee Animation ─────────────────────────────────────────────────────── */
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.animate-marquee:hover {
+    animation-play-state: paused;
+}

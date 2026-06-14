@@ -148,19 +148,19 @@ export const INSTRUCTORS = [
     name: "Dr. Vishakha S Rao",
     role: "Founder & Lead Instructor",
     bio: "With a doctorate in physiotherapy and over a decade of Pilates expertise, Dr. Vishakha brings a unique therapeutic perspective to every session.",
-    image: "instructor-vishakha.png",
+    image: "/media/instructors/instructor-vishakha.jpg",
   },
   {
     name: "Akhlekh",
     role: "Founder & Senior Trainer",
     bio: "A passionate movement specialist who combines athletic precision with mindful coaching to make complex movements accessible.",
-    image: "instructor-akhlekh.png",
+    image: "/media/instructors/instructor-akhlekh.jpg",
   },
   {
     name: "Karan",
     role: "Founder & Senior Trainer",
     bio: "Karan's holistic approach integrates strength, flexibility, and mindfulness into a seamless practice that unlocks your potential.",
-    image: "instructor-karan.png",
+    image: "/media/instructors/instructor-karan.jpg",
   },
 ] as const;
 
@@ -201,11 +201,11 @@ export const FAQS = [
 
 // ─── Gallery ─────────────────────────────────────────────────────────────────
 
-export const GALLERY_IMAGES = [
-  { src: "gallery-reformer.png", alt: "Reformer Pilates session" },
-  { src: "gallery-session.png", alt: "Group Pilates class" },
-  { src: "gallery-details.png", alt: "Studio equipment and accessories" },
-  { src: "gallery-stretch.png", alt: "Stretching and mat work" },
-  { src: "about-studio.png", alt: "Bright studio interior" },
-  { src: "hero-bg.png", alt: "Premium studio atmosphere" },
-] as const;
+const galleryGlob = import.meta.glob('/public/media/gallery/*.{jpg,JPG,jpeg,JPEG,png,PNG,mp4,webm}', { eager: true });
+
+export const STUDIO_MEDIA = Object.keys(galleryGlob).map((filePath) => {
+  // Vite returns paths like /public/media/gallery/1.jpg. We serve from /media/...
+  const publicUrl = filePath.replace('/public', '');
+  const type = publicUrl.toLowerCase().match(/\.(mp4|webm)$/) ? "video" : "image";
+  return { type, src: publicUrl };
+});
