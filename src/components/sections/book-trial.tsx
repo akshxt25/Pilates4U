@@ -95,6 +95,7 @@ export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [shake, setShake] = useState(false);
 
   const availableDates = useMemo(() => getNextNDates(14), []);
 
@@ -115,7 +116,11 @@ export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } 
     e.preventDefault();
     const err = validate();
     setErrors(err);
-    if (Object.keys(err).length > 0) return;
+    if (Object.keys(err).length > 0) {
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+      return;
+    }
 
     setIsSubmitting(true);
     const session = SESSION_TYPES.find((s) => s.key === sessionType)!;
@@ -203,10 +208,12 @@ export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } 
                   transition={{ duration: 0.4 }}
                   className="glass-card-light rounded-xl sm:rounded-2xl p-4 sm:p-8 md:p-10 shadow-lg min-w-0 w-full max-w-full box-border"
                 >
-                  <form
+                  <motion.form
                     ref={formRef}
                     onSubmit={handleSubmit}
                     noValidate
+                    animate={shake ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
+                    transition={{ duration: 0.4 }}
                     className="space-y-5 sm:space-y-6 min-w-0 w-full"
                   >
                     {/* Name + Phone */}
@@ -415,7 +422,7 @@ export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } 
                       {isSubmitting ? "Submitting..." : "Book My Trial Session"}
                       {!isSubmitting && <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
                     </button>
-                  </form>
+                  </motion.form>
                 </motion.div>
               ) : (
                 /* ── Success State ───────────────────────────────────── */
