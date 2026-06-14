@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
@@ -15,6 +16,8 @@ import { WHATSAPP_URL } from "@/lib/constants";
 import { MessageCircle } from "lucide-react";
 
 export default function App() {
+  const [isBookingSubmitted, setIsBookingSubmitted] = useState(false);
+
   return (
     <div className="min-h-screen bg-ivory">
       <Navbar />
@@ -28,8 +31,8 @@ export default function App() {
         <Instructors />
         <Gallery />
         <FAQ />
-        <BookTrial />
-        <CTA />
+        <BookTrial onSubmitSuccess={() => setIsBookingSubmitted(true)} />
+        {!isBookingSubmitted && <CTA />}
       </main>
       <Footer />
 

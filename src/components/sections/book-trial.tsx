@@ -83,7 +83,7 @@ function normalizePhone(value: string): string {
 
 /* ── Component ──────────────────────────────────────────────────────────────── */
 
-export function BookTrial() {
+export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } = {}) {
   const formRef = useRef<HTMLFormElement>(null);
 
   /* ── State ──────────────────────────────────────────────────────────── */
@@ -139,6 +139,7 @@ export function BookTrial() {
       });
       
       setSubmitted(true);
+      onSubmitSuccess?.();
     } catch (error) {
       console.error("Error submitting form", error);
       alert("Something went wrong. Please try again or contact us via WhatsApp.");
