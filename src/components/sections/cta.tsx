@@ -16,7 +16,7 @@ export function CTA() {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-ivory leading-tight">
+          <h2 className="type-section-title text-ivory">
             Your Transformation
             <span className="block gradient-text">Begins Today</span>
           </h2>

@@ -32,7 +32,7 @@ export function Hero() {
           {/* Eyebrow */}
           <motion.p
             variants={staggerItem}
-            className="text-xs uppercase tracking-[0.3em] text-champagne mb-8 font-medium"
+            className="type-eyebrow text-champagne mb-8 tracking-[0.3em]"
           >
             Premium Pilates Studio · Gurugram
           </motion.p>
@@ -40,7 +40,7 @@ export function Hero() {
           {/* Headline */}
           <motion.h1
             variants={staggerItem}
-            className="font-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight text-ivory"
+            className="type-hero-title text-ivory"
           >
             Move. Strengthen.
             <span className="block mt-2 gradient-text">Transform.</span>
@@ -88,7 +88,7 @@ export function Hero() {
         >
           {HERO_STATS.map((stat, i) => (
             <div key={i} className="text-center">
-              <p className="text-3xl sm:text-4xl font-heading font-bold text-ivory">
+              <p className="type-stat text-3xl sm:text-4xl text-ivory">
                 {stat.value}
               </p>
               <p className="text-[11px] text-ivory/40 uppercase tracking-[0.2em] mt-1">

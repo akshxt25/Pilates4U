@@ -32,12 +32,12 @@ export function About() {
             whileInView="visible"
             viewport={viewportOnce}
           >
-            <p className="text-xs uppercase tracking-[0.25em] text-champagne font-medium mb-4">
+            <p className="type-eyebrow text-champagne mb-4">
               About Us
             </p>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal leading-tight">
+            <h2 className="type-section-title text-charcoal">
               Where Wellness
-              <span className="block text-champagne">Meets Precision</span>
+              <span className="block text-champagne italic">Meets Precision</span>
             </h2>
             <p className="mt-6 text-warm-gray leading-relaxed text-lg">
               Pilates For You was born from a vision of creating a holistic fitness
@@ -58,7 +58,7 @@ export function About() {
                 { value: "All Ages", label: "Kids to Elders" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <p className="font-heading text-lg font-bold text-charcoal">
+                  <p className="type-stat text-charcoal">
                     {stat.value}
                   </p>
                   <p className="text-xs text-taupe uppercase tracking-wider mt-1">

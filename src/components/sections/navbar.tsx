@@ -49,13 +49,13 @@ export function Navbar() {
           >
             <div className="flex flex-col">
               <span className={cn(
-                "font-heading text-xl font-bold tracking-wide transition-colors",
+                "font-heading text-xl font-semibold tracking-wide transition-colors",
                 scrolled ? "text-charcoal" : "text-ivory"
               )}>
                 {BUSINESS.name}
               </span>
               <span className={cn(
-                "text-[10px] uppercase tracking-[0.25em] hidden sm:block transition-colors",
+                "type-eyebrow text-[10px] hidden sm:block transition-colors",
                 scrolled ? "text-taupe" : "text-ivory/60"
               )}>
                 {BUSINESS.tagline}

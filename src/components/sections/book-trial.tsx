@@ -66,6 +66,14 @@ function formatDateLabel(dateStr: string): string {
   });
 }
 
+function formatDateCompact(dateStr: string): string {
+  const label = formatDateLabel(dateStr);
+  if (label === "Today" || label === "Tomorrow") return label;
+  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-IN", {
+    weekday: "short",
+  });
+}
+
 function normalizePhone(value: string): string {
   const digits = value.replace(/\D/g, "");
   if (/^91[6-9]\d{9}$/.test(digits)) return digits.slice(2);
@@ -133,13 +141,13 @@ export function BookTrial() {
   return (
     <section
       id="book"
-      className="relative py-16 sm:py-24 lg:py-32 bg-ivory overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-32 bg-ivory overflow-x-clip"
     >
       {/* Subtle decorative accents */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-champagne/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-champagne/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
 
-      <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 min-w-0 w-full">
         {/* ── Header ──────────────────────────────────────────────── */}
         <motion.div
           variants={fadeUp}
@@ -148,10 +156,10 @@ export function BookTrial() {
           viewport={viewportOnce}
           className="text-center mb-8 sm:mb-14"
         >
-          <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-champagne font-medium mb-3 sm:mb-4">
+          <p className="type-eyebrow text-[10px] sm:text-xs text-champagne mb-3 sm:mb-4">
             Book a Trial Session
           </p>
-          <h2 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal mb-3 sm:mb-5">
+          <h2 className="type-section-title text-2xl sm:text-4xl lg:text-5xl text-charcoal mb-3 sm:mb-5">
             Reserve Your Preferred Slot
           </h2>
           <p className="text-warm-gray text-base sm:text-lg max-w-xl mx-auto">
@@ -161,14 +169,14 @@ export function BookTrial() {
         </motion.div>
 
         {/* ── Two-column layout ───────────────────────────────────── */}
-        <div className="grid lg:grid-cols-5 gap-6 sm:gap-10 items-start">
+        <div className="grid lg:grid-cols-5 gap-6 sm:gap-10 items-start min-w-0 w-full">
           {/* ── Form Card (3 cols) ────────────────────────────────── */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="lg:col-span-3"
+            className="lg:col-span-3 min-w-0 w-full"
           >
             <AnimatePresence mode="wait">
               {!submitted ? (
@@ -178,16 +186,16 @@ export function BookTrial() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
-                  className="glass-card-light rounded-xl sm:rounded-2xl p-4 sm:p-8 md:p-10 shadow-lg overflow-hidden w-full max-w-full"
+                  className="glass-card-light rounded-xl sm:rounded-2xl p-4 sm:p-8 md:p-10 shadow-lg min-w-0 w-full max-w-full box-border"
                 >
                   <form
                     ref={formRef}
                     onSubmit={handleSubmit}
                     noValidate
-                    className="space-y-5 sm:space-y-6"
+                    className="space-y-5 sm:space-y-6 min-w-0 w-full"
                   >
                     {/* Name + Phone */}
-                    <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 min-w-0">
                       <div>
                         <label className="flex items-center gap-2 text-sm font-medium text-charcoal mb-2">
                           <User className="w-4 h-4 text-champagne" />
@@ -202,7 +210,7 @@ export function BookTrial() {
                             setErrors((p) => ({ ...p, name: "" }));
                           }}
                           placeholder="Your full name"
-                          className="w-full rounded-xl border border-sand bg-ivory px-4 py-3 text-sm text-charcoal placeholder:text-warm-gray-light focus:outline-none focus:ring-2 focus:ring-champagne/40 focus:border-champagne transition-all"
+                          className="w-full min-w-0 rounded-xl border border-sand bg-ivory px-4 py-3 text-base sm:text-sm text-charcoal placeholder:text-warm-gray-light focus:outline-none focus:ring-2 focus:ring-champagne/40 focus:border-champagne transition-all"
                         />
                         {errors.name && (
                           <p className="text-xs text-red-500 mt-1.5">
@@ -226,7 +234,7 @@ export function BookTrial() {
                           inputMode="numeric"
                           placeholder="9876543210"
                           maxLength={12}
-                          className="w-full rounded-xl border border-sand bg-ivory px-4 py-3 text-sm text-charcoal placeholder:text-warm-gray-light focus:outline-none focus:ring-2 focus:ring-champagne/40 focus:border-champagne transition-all"
+                          className="w-full min-w-0 rounded-xl border border-sand bg-ivory px-4 py-3 text-base sm:text-sm text-charcoal placeholder:text-warm-gray-light focus:outline-none focus:ring-2 focus:ring-champagne/40 focus:border-champagne transition-all"
                         />
                         {errors.phone && (
                           <p className="text-xs text-red-500 mt-1.5">
@@ -242,23 +250,23 @@ export function BookTrial() {
                         <Sparkles className="w-4 h-4 text-champagne" />
                         Session Type
                       </label>
-                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                      <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-2 sm:gap-3">
                         {SESSION_TYPES.map((s) => (
                           <button
                             key={s.key}
                             type="button"
                             onClick={() => setSessionType(s.key)}
-                            className={`relative rounded-xl border px-4 py-3 sm:py-3.5 text-left transition-all duration-300 ${
+                            className={`relative rounded-xl border px-3 sm:px-4 py-3 sm:py-3.5 text-left transition-all duration-300 min-w-0 w-full ${
                               sessionType === s.key
                                 ? "border-champagne bg-champagne/10 shadow-sm"
                                 : "border-sand bg-ivory hover:border-champagne/50"
                             }`}
                           >
-                            <div className="flex items-center justify-between sm:block">
-                              <span className="text-sm font-medium text-charcoal">
+                            <div className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between">
+                              <span className="text-sm font-medium text-charcoal leading-snug">
                                 {s.label}
                               </span>
-                              <span className="text-champagne font-semibold text-sm sm:text-base sm:mt-0.5 sm:block">
+                              <span className="text-champagne font-semibold text-sm shrink-0">
                                 ₹{s.fee}
                               </span>
                             </div>
@@ -279,35 +287,41 @@ export function BookTrial() {
                     </div>
 
                     {/* Date Selection */}
-                    <div>
+                    <div className="min-w-0 w-full">
                       <label className="flex items-center gap-2 text-sm font-medium text-charcoal mb-3">
-                        <Calendar className="w-4 h-4 text-champagne" />
+                        <Calendar className="w-4 h-4 text-champagne shrink-0" />
                         Preferred Date
                       </label>
-                      <div className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-1 px-1">
-                        {availableDates.map((d) => (
-                          <button
-                            key={d}
-                            type="button"
-                            onClick={() => {
-                              setSelectedDate(d);
-                              setSelectedSlot("");
-                              setErrors((p) => ({ ...p, date: "" }));
-                            }}
-                            className={`flex-shrink-0 rounded-lg sm:rounded-xl border px-2.5 sm:px-4 py-2 sm:py-3 text-center transition-all duration-300 min-w-[60px] sm:min-w-[80px] ${
-                              selectedDate === d
-                                ? "border-champagne bg-champagne/10 shadow-sm"
-                                : "border-sand bg-ivory hover:border-champagne/50"
-                            }`}
-                          >
-                            <span className="text-[10px] sm:text-xs text-warm-gray block">
-                              {formatDateLabel(d).split(" ")[0] || formatDateLabel(d)}
-                            </span>
-                            <span className="text-xs sm:text-sm font-semibold text-charcoal block mt-0.5">
-                              {new Date(d + "T00:00:00").getDate()}
-                            </span>
-                          </button>
-                        ))}
+                      <div className="relative min-w-0 w-full">
+                        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory touch-pan-x overscroll-x-contain -mx-1 px-1 sm:mx-0 sm:px-0">
+                          {availableDates.map((d) => {
+                            const label = formatDateCompact(d);
+                            const isLongLabel = label.length > 6;
+                            return (
+                              <button
+                                key={d}
+                                type="button"
+                                onClick={() => {
+                                  setSelectedDate(d);
+                                  setSelectedSlot("");
+                                  setErrors((p) => ({ ...p, date: "" }));
+                                }}
+                                className={`shrink-0 snap-start rounded-xl border px-3 py-2.5 text-center transition-all duration-300 w-[4.5rem] sm:w-20 ${
+                                  selectedDate === d
+                                    ? "border-champagne bg-champagne/10 shadow-sm"
+                                    : "border-sand bg-ivory hover:border-champagne/50"
+                                }`}
+                              >
+                                <span className={`text-warm-gray block leading-tight truncate ${isLongLabel ? "text-[9px] sm:text-[10px]" : "text-[10px] sm:text-xs"}`}>
+                                  {label}
+                                </span>
+                                <span className="text-sm font-semibold text-charcoal block mt-0.5">
+                                  {new Date(d + "T00:00:00").getDate()}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
                       {errors.date && (
                         <p className="text-xs text-red-500 mt-1.5">
@@ -317,9 +331,9 @@ export function BookTrial() {
                     </div>
 
                     {/* Time Slots */}
-                    <div>
+                    <div className="min-w-0 w-full">
                       <label className="flex items-center gap-2 text-sm font-medium text-charcoal mb-3">
-                        <Clock className="w-4 h-4 text-champagne" />
+                        <Clock className="w-4 h-4 text-champagne shrink-0" />
                         Preferred Time Slot
                       </label>
 
@@ -327,7 +341,7 @@ export function BookTrial() {
                       <p className="text-xs uppercase tracking-wider text-warm-gray mb-2">
                         Morning
                       </p>
-                      <div className="flex gap-1.5 sm:gap-2 mb-4">
+                      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-4 w-full">
                         {MORNING_SLOTS.map((slot) => (
                           <button
                             key={slot}
@@ -336,7 +350,7 @@ export function BookTrial() {
                               setSelectedSlot(slot);
                               setErrors((p) => ({ ...p, slot: "" }));
                             }}
-                            className={`flex-1 min-w-0 rounded-lg border py-2.5 sm:px-4 sm:py-2.5 text-[11px] sm:text-sm font-medium transition-all duration-300 text-center ${
+                            className={`w-full min-w-0 rounded-lg border px-2 py-2.5 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-medium transition-all duration-300 text-center ${
                               selectedSlot === slot
                                 ? "border-champagne bg-champagne text-charcoal shadow-sm"
                                 : "border-sand bg-ivory text-warm-gray hover:border-champagne/50 hover:text-charcoal"
@@ -351,7 +365,7 @@ export function BookTrial() {
                       <p className="text-xs uppercase tracking-wider text-warm-gray mb-2">
                         Evening
                       </p>
-                      <div className="flex gap-1.5 sm:gap-2">
+                      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 w-full">
                         {EVENING_SLOTS.map((slot) => (
                           <button
                             key={slot}
@@ -360,7 +374,7 @@ export function BookTrial() {
                               setSelectedSlot(slot);
                               setErrors((p) => ({ ...p, slot: "" }));
                             }}
-                            className={`flex-1 min-w-0 rounded-lg border py-2.5 sm:px-4 sm:py-2.5 text-[11px] sm:text-sm font-medium transition-all duration-300 text-center ${
+                            className={`w-full min-w-0 rounded-lg border px-2 py-2.5 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-medium transition-all duration-300 text-center ${
                               selectedSlot === slot
                                 ? "border-champagne bg-champagne text-charcoal shadow-sm"
                                 : "border-sand bg-ivory text-warm-gray hover:border-champagne/50 hover:text-charcoal"
@@ -404,10 +418,10 @@ export function BookTrial() {
                   >
                     <CheckCircle className="w-8 h-8 text-[#25D366]" />
                   </motion.div>
-                  <p className="text-xs uppercase tracking-[0.25em] text-champagne font-medium mb-3">
+                  <p className="type-eyebrow text-champagne mb-3">
                     Booking Request Sent
                   </p>
-                  <h3 className="font-heading text-2xl sm:text-3xl font-bold text-charcoal mb-4">
+                  <h3 className="font-heading text-2xl sm:text-3xl font-semibold text-charcoal mb-4">
                     We've received your request!
                   </h3>
                   <p className="text-warm-gray max-w-md mx-auto mb-8">
@@ -451,7 +465,7 @@ export function BookTrial() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="lg:col-span-2 flex flex-col gap-3 sm:gap-4 lg:gap-6"
+            className="lg:col-span-2 flex flex-col gap-3 sm:gap-4 lg:gap-6 min-w-0 w-full"
           >
             {/* WhatsApp Card */}
             <motion.a

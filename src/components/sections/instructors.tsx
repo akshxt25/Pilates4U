@@ -14,10 +14,10 @@ export function Instructors() {
           viewport={viewportOnce}
           className="text-center mb-16 max-w-2xl mx-auto"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-champagne font-medium mb-4">
+          <p className="type-eyebrow text-champagne mb-4">
             Our Team
           </p>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
+          <h2 className="type-section-title text-charcoal">
             Meet Your Trainers
           </h2>
         </motion.div>
@@ -53,7 +53,7 @@ export function Instructors() {
               </div>
 
               {/* Info */}
-              <h3 className="font-heading text-xl font-bold text-charcoal">
+              <h3 className="font-heading text-xl font-semibold text-charcoal">
                 {instructor.name}
               </h3>
               <p className="text-sm text-champagne font-medium mt-1">

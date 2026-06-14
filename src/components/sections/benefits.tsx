@@ -24,10 +24,10 @@ export function Benefits() {
           viewport={viewportOnce}
           className="text-center mb-16 max-w-2xl mx-auto"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-champagne font-medium mb-4">
+          <p className="type-eyebrow text-champagne mb-4">
             Benefits
           </p>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
+          <h2 className="type-section-title text-charcoal">
             Why Pilates Works
           </h2>
         </motion.div>
@@ -51,7 +51,7 @@ export function Benefits() {
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-champagne/10 to-sage/10 flex items-center justify-center mb-4 group-hover:from-champagne/20 group-hover:to-sage/20 transition-all duration-500">
                   {Icon && <Icon className="w-7 h-7 text-champagne" />}
                 </div>
-                <h3 className="font-heading text-sm font-bold text-charcoal">
+                <h3 className="font-sans text-sm font-semibold text-charcoal">
                   {benefit.title}
                 </h3>
               </motion.div>

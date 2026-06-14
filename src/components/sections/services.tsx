@@ -25,10 +25,10 @@ export function Services() {
           viewport={viewportOnce}
           className="text-center mb-16 lg:mb-20 max-w-2xl mx-auto"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-champagne font-medium mb-4">
+          <p className="type-eyebrow text-champagne mb-4">
             Our Programs
           </p>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-ivory">
+          <h2 className="type-section-title text-ivory">
             Curated for Your Wellness
           </h2>
         </motion.div>
@@ -55,7 +55,7 @@ export function Services() {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-heading text-lg font-bold text-ivory mb-3">
+                <h3 className="font-heading text-lg font-semibold text-ivory mb-3">
                   {service.title}
                 </h3>
 

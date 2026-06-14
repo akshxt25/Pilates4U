@@ -25,7 +25,7 @@ export function Footer() {
           {/* Brand */}
           <motion.div variants={staggerItem} className="lg:col-span-1">
             <div className="mb-5">
-              <p className="font-heading text-xl font-bold text-ivory">
+              <p className="font-heading text-xl font-semibold text-ivory">
                 {BUSINESS.name}
               </p>
               <p className="text-[10px] uppercase tracking-[0.25em] text-ivory/40 mt-1">
@@ -62,7 +62,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <motion.div variants={staggerItem}>
-            <h4 className="text-sm font-semibold text-ivory uppercase tracking-wider mb-5 font-heading">
+            <h4 className="font-sans text-sm font-semibold text-ivory uppercase tracking-wider mb-5">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -82,7 +82,7 @@ export function Footer() {
 
           {/* Contact */}
           <motion.div variants={staggerItem}>
-            <h4 className="text-sm font-semibold text-ivory uppercase tracking-wider mb-5 font-heading">
+            <h4 className="font-sans text-sm font-semibold text-ivory uppercase tracking-wider mb-5">
               Contact
             </h4>
             <ul className="space-y-4">
@@ -115,7 +115,7 @@ export function Footer() {
 
           {/* Map */}
           <motion.div variants={staggerItem}>
-            <h4 className="text-sm font-semibold text-ivory uppercase tracking-wider mb-5 font-heading">
+            <h4 className="font-sans text-sm font-semibold text-ivory uppercase tracking-wider mb-5">
               Location
             </h4>
             <div className="rounded-xl overflow-hidden border border-ivory/10 aspect-square">

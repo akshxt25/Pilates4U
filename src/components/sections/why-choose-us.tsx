@@ -22,10 +22,10 @@ export function WhyChooseUs() {
           viewport={viewportOnce}
           className="text-center mb-16 max-w-2xl mx-auto"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-champagne font-medium mb-4">
+          <p className="type-eyebrow text-champagne mb-4">
             Why Pilates For You
           </p>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
+          <h2 className="type-section-title text-charcoal">
             The Difference
           </h2>
         </motion.div>
@@ -49,7 +49,7 @@ export function WhyChooseUs() {
                 <div className="w-14 h-14 rounded-full bg-champagne/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-champagne/20 transition-colors">
                   {Icon && <Icon className="w-6 h-6 text-champagne" />}
                 </div>
-                <h3 className="font-heading text-lg font-bold text-charcoal mb-2">
+                <h3 className="font-heading text-lg font-semibold text-charcoal mb-2">
                   {item.title}
                 </h3>
                 <p className="text-warm-gray text-sm leading-relaxed">

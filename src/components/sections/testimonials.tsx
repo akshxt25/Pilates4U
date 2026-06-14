@@ -20,10 +20,10 @@ export function Testimonials() {
           viewport={viewportOnce}
           className="text-center max-w-2xl mx-auto"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-champagne font-medium mb-4">
+          <p className="type-eyebrow text-champagne mb-4">
             Testimonials
           </p>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-ivory">
+          <h2 className="type-section-title text-ivory">
             Words That Move Us
           </h2>
         </motion.div>

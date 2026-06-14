@@ -19,10 +19,10 @@ export function FAQ() {
           viewport={viewportOnce}
           className="text-center mb-16"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-champagne font-medium mb-4">
+          <p className="type-eyebrow text-champagne mb-4">
             FAQs
           </p>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-ivory">
+          <h2 className="type-section-title text-ivory">
             Common Questions
           </h2>
         </motion.div>
