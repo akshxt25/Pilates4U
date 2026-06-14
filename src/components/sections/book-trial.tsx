@@ -183,7 +183,7 @@ export function BookTrial() {
         </motion.div>
 
         {/* ── Two-column layout ───────────────────────────────────── */}
-        <div className="grid lg:grid-cols-5 gap-6 sm:gap-10 items-start min-w-0 w-full">
+        <div className={`grid lg:grid-cols-5 gap-6 sm:gap-10 min-w-0 w-full ${submitted ? "items-center" : "items-start"}`}>
           {/* ── Form Card (3 cols) ────────────────────────────────── */}
           <motion.div
             variants={fadeUp}
