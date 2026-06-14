@@ -51,17 +51,17 @@ export function About() {
             </p>
 
             {/* Quick stats */}
-            <div className="mt-10 grid grid-cols-3 gap-6">
+            <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-6">
               {[
                 { value: "Since 2014", label: "Established" },
                 { value: "3 Founders", label: "Expert Team" },
                 { value: "All Ages", label: "Kids to Elders" },
               ].map((stat) => (
-                <div key={stat.label}>
+                <div key={stat.label} className="flex flex-col h-full">
                   <p className="type-stat text-charcoal">
                     {stat.value}
                   </p>
-                  <p className="text-xs text-taupe uppercase tracking-wider mt-1">
+                  <p className="text-[10px] sm:text-xs text-taupe uppercase tracking-wider mt-auto pt-2">
                     {stat.label}
                   </p>
                 </div>
