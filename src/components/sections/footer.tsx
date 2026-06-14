@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { staggerContainer, staggerItem, viewportOnce } from "@/lib/animations";
-import { Separator } from "@/components/ui/separator";
 import { BUSINESS, NAV_ITEMS } from "@/lib/constants";
 import { Phone, Mail, MapPin } from "lucide-react";
 
@@ -11,7 +10,7 @@ export function Footer() {
   };
 
   return (
-    <footer id="contact" className="relative bg-charcoal text-ivory/80 overflow-hidden">
+    <footer id="contact" className="relative bg-dark text-ivory/80 overflow-hidden">
       {/* Top gradient line */}
       <div className="h-px bg-gradient-to-r from-transparent via-champagne/30 to-transparent" />
 
@@ -25,21 +24,16 @@ export function Footer() {
         >
           {/* Brand */}
           <motion.div variants={staggerItem} className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-champagne/15 border border-champagne/20">
-                <span className="font-heading text-lg font-bold text-champagne">P</span>
-              </div>
-              <div>
-                <p className="font-heading text-lg font-semibold text-ivory">
-                  {BUSINESS.name}
-                </p>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-ivory/40">
-                  {BUSINESS.tagline}
-                </p>
-              </div>
+            <div className="mb-5">
+              <p className="font-heading text-xl font-bold text-ivory">
+                {BUSINESS.name}
+              </p>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-ivory/40 mt-1">
+                {BUSINESS.tagline}
+              </p>
             </div>
-            <p className="text-sm text-ivory/50 leading-relaxed">
-              Gurgaon's premier Pilates studio, dedicated to transforming lives through
+            <p className="text-sm text-ivory/40 leading-relaxed">
+              Gurgaon's premier Pilates studio — transforming lives through
               mindful movement since 2014.
             </p>
 
@@ -68,7 +62,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <motion.div variants={staggerItem}>
-            <h4 className="font-heading text-sm font-semibold text-ivory uppercase tracking-wider mb-5">
+            <h4 className="text-sm font-semibold text-ivory uppercase tracking-wider mb-5 font-heading">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -77,7 +71,7 @@ export function Footer() {
                   <a
                     href={item.href}
                     onClick={(e) => { e.preventDefault(); handleNav(item.href); }}
-                    className="text-sm text-ivory/50 hover:text-champagne transition-colors"
+                    className="text-sm text-ivory/40 hover:text-champagne transition-colors"
                   >
                     {item.label}
                   </a>
@@ -86,31 +80,9 @@ export function Footer() {
             </ul>
           </motion.div>
 
-          {/* Services */}
-          <motion.div variants={staggerItem}>
-            <h4 className="font-heading text-sm font-semibold text-ivory uppercase tracking-wider mb-5">
-              Services
-            </h4>
-            <ul className="space-y-3">
-              {["Reformer Pilates", "Mat Pilates", "Personal Training", "Rehabilitation Pilates", "Prenatal Pilates"].map(
-                (service) => (
-                  <li key={service}>
-                    <a
-                      href="#services"
-                      onClick={(e) => { e.preventDefault(); handleNav("#services"); }}
-                      className="text-sm text-ivory/50 hover:text-champagne transition-colors"
-                    >
-                      {service}
-                    </a>
-                  </li>
-                )
-              )}
-            </ul>
-          </motion.div>
-
           {/* Contact */}
           <motion.div variants={staggerItem}>
-            <h4 className="font-heading text-sm font-semibold text-ivory uppercase tracking-wider mb-5">
+            <h4 className="text-sm font-semibold text-ivory uppercase tracking-wider mb-5 font-heading">
               Contact
             </h4>
             <ul className="space-y-4">
@@ -118,7 +90,7 @@ export function Footer() {
                 <Phone className="w-4 h-4 text-champagne/60 mt-0.5 flex-shrink-0" />
                 <a
                   href={`tel:${BUSINESS.phone}`}
-                  className="text-sm text-ivory/50 hover:text-champagne transition-colors"
+                  className="text-sm text-ivory/40 hover:text-champagne transition-colors"
                 >
                   {BUSINESS.phone}
                 </a>
@@ -127,28 +99,46 @@ export function Footer() {
                 <Mail className="w-4 h-4 text-champagne/60 mt-0.5 flex-shrink-0" />
                 <a
                   href={`mailto:${BUSINESS.email}`}
-                  className="text-sm text-ivory/50 hover:text-champagne transition-colors"
+                  className="text-sm text-ivory/40 hover:text-champagne transition-colors"
                 >
                   {BUSINESS.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-champagne/60 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-ivory/50 leading-relaxed">
+                <span className="text-sm text-ivory/40 leading-relaxed">
                   {BUSINESS.address}
                 </span>
               </li>
             </ul>
           </motion.div>
+
+          {/* Map */}
+          <motion.div variants={staggerItem}>
+            <h4 className="text-sm font-semibold text-ivory uppercase tracking-wider mb-5 font-heading">
+              Location
+            </h4>
+            <div className="rounded-xl overflow-hidden border border-ivory/10 aspect-square">
+              <iframe
+                src={BUSINESS.mapUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: "grayscale(1) invert(0.92) contrast(0.8)" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Studio location map"
+              />
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Bottom bar */}
-        <Separator className="my-10 bg-ivory/10" />
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-ivory/30">
+        <div className="mt-16 pt-8 border-t border-ivory/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-ivory/25">
             © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
           </p>
-          <p className="text-xs text-ivory/30">
+          <p className="text-xs text-ivory/25">
             Designed with ♡ for wellness
           </p>
         </div>

@@ -11,6 +11,8 @@ import { FAQ } from "@/components/sections/faq";
 import { BookTrial } from "@/components/sections/book-trial";
 import { CTA } from "@/components/sections/cta";
 import { Footer } from "@/components/sections/footer";
+import { WHATSAPP_URL } from "@/lib/constants";
+import { MessageCircle } from "lucide-react";
 
 export default function App() {
   return (
@@ -30,6 +32,17 @@ export default function App() {
         <CTA />
       </main>
       <Footer />
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-xl hover:scale-110 transition-transform whatsapp-float"
+      >
+        <MessageCircle className="w-6 h-6 text-white" />
+      </a>
     </div>
   );
 }
