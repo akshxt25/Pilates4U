@@ -5,7 +5,7 @@ export const BUSINESS = {
   tagline: "Art of Pose & Poise",
   phone: "+91 9540777666",
   phoneRaw: "919540777666",
-  email: "info@pilatesforyou.in",
+  email: "pilatesforyougurugram@gmail.com",
   address:
     "4304, Third Floor, Near Galleria Market, Sector-28, DLF Phase 4, Gurugram, Haryana-122009",
   addressShort: "DLF Phase 4, Gurugram",
@@ -29,7 +29,7 @@ export const NAV_ITEMS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Programs", href: "#services" },
-  { label: "Trainers", href: "#instructors" },
+  { label: "Team", href: "#instructors" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
 ] as const;
@@ -37,7 +37,7 @@ export const NAV_ITEMS = [
 // ─── Hero Statistics ─────────────────────────────────────────────────────────
 
 export const HERO_STATS = [
-  { value: "10+", label: "Years" },
+  { value: "5+", label: "Years" },
   { value: "1000+", label: "Sessions" },
   { value: "5.0", label: "Rating" },
 ] as const;
@@ -48,25 +48,25 @@ export const SERVICES = [
   {
     title: "Reformer Pilates",
     description:
-      "Spring-based resistance training that sculpts, strengthens, and realigns your body with precision.",
+      "Experience the power of Reformer Pilates through spring-based resistance training that improves strength, posture, flexibility, balance, and core stability. Ideal for beginners, fitness enthusiasts, and anyone seeking low-impact, full-body conditioning.",
     icon: "Waves" as const,
   },
   {
     title: "Mat Pilates",
     description:
-      "Mindful mat sessions that develop deep core strength, flexibility, and a profound mind-body connection.",
+      "Develop a strong foundation with Mat Pilates classes focused on core strength, mobility, flexibility, posture, and mindful movement. Perfect for improving body awareness and everyday movement patterns.",
     icon: "Flower2" as const,
   },
   {
     title: "Personal Training",
     description:
-      "One-on-one sessions tailored entirely to your goals — from injury recovery to peak performance.",
+      "Achieve your fitness goals with one-on-one Pilates training tailored to your needs. Whether your focus is weight loss, strength building, injury prevention, or overall wellness, our personalised sessions are designed around you.",
     icon: "UserCheck" as const,
   },
   {
-    title: "Rehabilitation",
+    title: "Rehabilitation Pilates",
     description:
-      "Therapeutic Pilates designed with physiotherapists to help you recover and rebuild sustainably.",
+      "Our physiotherapy-led Rehabilitation Pilates program combines clinical expertise with therapeutic movement to support injury recovery, pain management, improved mobility, and long-term strength.",
     icon: "HeartPulse" as const,
   },
 ] as const;
@@ -75,23 +75,23 @@ export const SERVICES = [
 
 export const WHY_CHOOSE_US = [
   {
-    title: "Certified Experts",
-    description: "Instructors with years of specialized training and international certifications.",
+    title: "Physiotherapy-Led Expertise",
+    description: "Our programs are designed and guided by experienced physiotherapists and certified Pilates instructors, ensuring safe, effective, and evidence-based movement for every stage of life.",
     icon: "Award" as const,
   },
   {
-    title: "Result-Driven",
-    description: "Measurable outcomes with programs that adapt to your progress.",
+    title: "Personalised for Your Body",
+    description: "No two bodies are the same. Every session is tailored to your goals, fitness level, movement patterns, and individual needs, helping you progress with confidence.",
     icon: "Target" as const,
   },
   {
-    title: "Holistic Approach",
-    description: "Nurturing body, mind, and spirit through mindful movement.",
-    icon: "Leaf" as const,
+    title: "Results That Last",
+    description: "Whether your goal is weight loss, improved posture, injury recovery, prenatal wellness, or overall fitness, our programs focus on sustainable progress and long-term well-being.",
+    icon: "TrendingUp" as const,
   },
   {
-    title: "Premium Equipment",
-    description: "World-class Reformers and apparatus for the finest movement experience.",
+    title: "Premium Reformer Pilates Experience",
+    description: "Train on world-class Pilates equipment in a welcoming boutique studio designed to support focus, comfort, and transformation through mindful movement.",
     icon: "Gem" as const,
   },
 ] as const;
@@ -101,10 +101,10 @@ export const WHY_CHOOSE_US = [
 export const BENEFITS = [
   { title: "Improved Posture", icon: "Sparkles" as const },
   { title: "Core Strength", icon: "Shield" as const },
-  { title: "Flexibility", icon: "Wind" as const },
+  { title: "Flexibility", icon: "StretchHorizontal" as const },
   { title: "Balance", icon: "Scale" as const },
   { title: "Injury Prevention", icon: "ShieldCheck" as const },
-  { title: "Stress Relief", icon: "Sun" as const },
+  { title: "Stress Relief", icon: "Heart" as const },
 ] as const;
 
 // ─── Testimonials ────────────────────────────────────────────────────────────
@@ -149,17 +149,17 @@ export const INSTRUCTORS = [
     name: "Dr. Vishakha S Rao",
     role: "Founder & Lead Instructor",
     bio: "With a doctorate in physiotherapy and over a decade of Pilates expertise, Dr. Vishakha brings a unique therapeutic perspective to every session.",
-    image: "/media/instructors/instructor-vishakha.jpg",
+    image: "/media/instructors/IMG_2543.JPG.jpeg",
   },
   {
-    name: "Akhlekh",
-    role: "Founder & Senior Trainer",
+    name: "Mohammed Akhlakh",
+    role: "Co-Founder & Senior Trainer",
     bio: "A passionate movement specialist who combines athletic precision with mindful coaching to make complex movements accessible.",
     image: "/media/instructors/instructor-akhlekh.jpg",
   },
   {
-    name: "Karan",
-    role: "Founder & Senior Trainer",
+    name: "Karan Bir Singh",
+    role: "Co-Founder & Senior Trainer",
     bio: "Karan's holistic approach integrates strength, flexibility, and mindfulness into a seamless practice that unlocks your potential.",
     image: "/media/instructors/instructor-karan.jpg",
   },
@@ -171,12 +171,12 @@ export const FAQS = [
   {
     question: "What is Pilates and how is it different from yoga?",
     answer:
-      "Pilates focuses on controlled movements that improve strength, flexibility, and posture using precise, flowing exercises — often with specialized equipment like Reformers.",
+      "Pilates focuses on controlled movements that improve strength, flexibility, and posture using precise, flowing exercises - often with specialized equipment like Reformers.",
   },
   {
     question: "Who can practice Pilates?",
     answer:
-      "Everyone — regardless of age or fitness level. Our instructors modify every exercise to match your ability, making it ideal for beginners, athletes, and those recovering from injuries.",
+      "Everyone - regardless of age or fitness level. Our instructors modify every exercise to match your ability, making it ideal for beginners, athletes, and those recovering from injuries.",
   },
   {
     question: "How often should I practice?",
@@ -186,7 +186,7 @@ export const FAQS = [
   {
     question: "What's the difference between Mat and Reformer Pilates?",
     answer:
-      "Mat Pilates uses body weight for resistance. Reformer Pilates uses a specialized machine with springs and straps for variable resistance — offering more variety and support.",
+      "Mat Pilates uses body weight for resistance. Reformer Pilates uses a specialized machine with springs and straps for variable resistance - offering more variety and support.",
   },
   {
     question: "Do you offer trial sessions?",
@@ -196,7 +196,7 @@ export const FAQS = [
   {
     question: "Can Pilates help with back pain?",
     answer:
-      "Yes — by strengthening deep core muscles, improving flexibility, and correcting postural imbalances, many clients experience significant pain relief.",
+      "Yes - by strengthening deep core muscles, improving flexibility, and correcting postural imbalances, many clients experience significant pain relief.",
   },
 ] as const;
 

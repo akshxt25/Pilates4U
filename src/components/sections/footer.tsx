@@ -28,8 +28,8 @@ export function Footer() {
               </p>
             </div>
             <p className="text-sm text-ivory/50 leading-relaxed pr-8">
-              Gurgaon's premier Pilates studio — transforming lives through
-              mindful movement since 2014.
+              Gurgaon's Premium Pilates studio - transforming lives through
+              mindful movement since 2022.
             </p>
 
             {/* Social */}

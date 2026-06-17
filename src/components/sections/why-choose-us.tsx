@@ -1,12 +1,12 @@
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations";
 import { WHY_CHOOSE_US } from "@/lib/constants";
-import { Award, Target, Leaf, Gem } from "lucide-react";
+import { Award, Target, TrendingUp, Gem } from "lucide-react";
 
 const iconMap = {
   Award,
   Target,
-  Leaf,
+  TrendingUp,
   Gem,
 } as Record<string, React.ComponentType<{ className?: string }>>;
 
@@ -26,8 +26,14 @@ export function WhyChooseUs() {
             Why Pilates For You
           </p>
           <h2 className="type-section-title text-charcoal">
-            The Difference
+            More Than Pilates.
+            <span className="block text-champagne italic">A Complete Wellness Experience.</span>
           </h2>
+          <p className="mt-4 text-warm-gray leading-relaxed">
+            At Pilates For You, we combine physiotherapy expertise, Reformer Pilates, and
+            personalised guidance to help you build strength, improve mobility, and achieve
+            lasting results.
+          </p>
         </motion.div>
 
         {/* Cards */}

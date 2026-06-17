@@ -54,6 +54,11 @@ export function Navbar() {
             onClick={(e) => { e.preventDefault(); handleNav("#home"); }}
             className="flex items-center gap-3 group"
           >
+            <img
+              src="/media/logo/logo.jpeg"
+              alt="Pilates For You Logo"
+              className="h-10 w-10 rounded-full object-cover"
+            />
             <div className="flex flex-col">
               <span className={cn(
                 "font-heading text-xl font-semibold tracking-wide transition-colors",

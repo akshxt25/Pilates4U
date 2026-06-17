@@ -39,7 +39,7 @@ export function Testimonials() {
           className="flex gap-6 animate-scroll"
           style={{
             "--card-count": TESTIMONIALS.length,
-            "--scroll-duration": "35s",
+            "--scroll-duration": "60s",
             width: "max-content",
           } as React.CSSProperties}
         >

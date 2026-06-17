@@ -18,7 +18,7 @@ export function Instructors() {
             Our Team
           </p>
           <h2 className="type-section-title text-charcoal">
-            Meet Your Trainers
+            Meet the Team
           </h2>
         </motion.div>
 
@@ -61,6 +61,23 @@ export function Instructors() {
               </p>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Team Group Photo */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="mt-16 flex justify-center"
+        >
+          <div className="rounded-2xl overflow-hidden max-w-2xl w-full">
+            <img
+              src="/media/instructors/Meet-the-team.jpeg"
+              alt="The Pilates For You Team"
+              className="w-full h-auto object-cover"
+            />
+          </div>
         </motion.div>
       </div>
     </section>

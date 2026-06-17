@@ -1,15 +1,15 @@
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations";
 import { BENEFITS } from "@/lib/constants";
-import { Sparkles, Shield, Wind, Scale, ShieldCheck, Sun } from "lucide-react";
+import { Sparkles, Shield, StretchHorizontal, Scale, ShieldCheck, Heart } from "lucide-react";
 
 const iconMap = {
   Sparkles,
   Shield,
-  Wind,
+  StretchHorizontal,
   Scale,
   ShieldCheck,
-  Sun,
+  Heart,
 } as Record<string, React.ComponentType<{ className?: string }>>;
 
 export function Benefits() {

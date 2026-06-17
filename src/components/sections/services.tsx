@@ -29,8 +29,13 @@ export function Services() {
             Our Programs
           </p>
           <h2 className="type-section-title text-ivory">
-            Curated for Your Wellness
+            Movement Designed Around You
           </h2>
+          <p className="mt-4 text-ivory/60 leading-relaxed">
+            Whether you're looking to build strength, improve mobility, recover from an injury,
+            support your pregnancy journey, or enhance overall wellness, our expert-led Pilates
+            programs are designed to help you achieve your goals with confidence.
+          </p>
         </motion.div>
 
         {/* Service Cards */}

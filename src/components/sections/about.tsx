@@ -15,7 +15,7 @@ export function About() {
           >
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] lg:aspect-[3/4]">
               <img
-                src="/media/about/about-studio.jpg"
+                src="/media/about/about-studio.jpeg"
                 alt="Inside Pilates For You Studio"
                 className="w-full h-full object-cover"
               />
@@ -39,29 +39,36 @@ export function About() {
               Where Wellness
               <span className="block text-champagne italic">Meets Precision</span>
             </h2>
-            <p className="mt-6 text-warm-gray leading-relaxed text-lg">
-              Pilates For You was born from a vision of creating a holistic fitness
-              environment that caters to each individual's unique journey. We blend
-              the art of Pilates with physiotherapy expertise.
+            <p className="mt-6 text-warm-gray leading-relaxed">
+              Pilates For You is a leading Pilates studio in Gurugram, combining
+              physiotherapy expertise with Reformer and Mat Pilates and mindful movement
+              to help you build strength, improve mobility, and enhance overall
+              well-being.
             </p>
             <p className="mt-4 text-warm-gray leading-relaxed">
-              Our mission is simple — bring practical, sustainable wellness changes
-              through mindful movement. We provide, we teach, we train. It's
-              Pilates for <em className="text-champagne font-medium not-italic">you</em>.
+              From rehabilitation and prenatal Pilates to strength training and
+              Pilates classes for women, our expert-led programs are tailored to
+              support every stage of your wellness journey.
+            </p>
+            <p className="mt-4 text-warm-gray leading-relaxed">
+              Whether your goal is weight loss, recovery, flexibility, or
+              long-term fitness, we're here to help you move better, feel
+              stronger, and live healthier.
             </p>
 
             {/* Quick stats */}
-            <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-6">
+            <div className="mt-10 grid grid-cols-3 gap-4 sm:gap-6">
               {[
-                { value: "Since 2014", label: "Established" },
-                { value: "3 Founders", label: "Expert Team" },
-                { value: "All Ages", label: "Kids to Elders" },
+                { value: "Holistic Wellness", label: "Strength • Mobility • Recovery" },
+                { value: "3 Founders", label: "Physiotherapists & Pilates Experts" },
+                { value: "Expert Guidance", label: "For Every Goal and Ability" },
               ].map((stat) => (
-                <div key={stat.label} className="flex flex-col h-full">
-                  <p className="type-stat text-charcoal">
+                <div key={stat.label}>
+                  <span className="block w-6 h-0.5 bg-champagne mb-3" />
+                  <p className="font-heading text-base sm:text-lg font-semibold text-charcoal leading-snug">
                     {stat.value}
                   </p>
-                  <p className="text-[10px] sm:text-xs text-taupe uppercase tracking-wider mt-auto pt-2">
+                  <p className="text-xs text-taupe mt-1 italic">
                     {stat.label}
                   </p>
                 </div>
