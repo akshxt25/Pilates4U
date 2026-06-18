@@ -1,3 +1,7 @@
+import vishakhaImg from '@/assets/media/instructors/instructor-vishakha.jpg';
+import akhlekhImg from '@/assets/media/instructors/instructor-akhlekh.jpg';
+import karanImg from '@/assets/media/instructors/instructor-karan.jpg';
+
 // ─── Business Information ─────────────────────────────────────────────────────
 
 export const BUSINESS = {
@@ -149,21 +153,21 @@ export const INSTRUCTORS = [
     name: "Dr. Vishakha S Rao",
     role: "Founder & Lead Instructor",
     bio: "With a doctorate in physiotherapy and over a decade of Pilates expertise, Dr. Vishakha brings a unique therapeutic perspective to every session.",
-    image: "/media/instructors/IMG_2543.JPG.jpeg",
+    image: vishakhaImg,
   },
   {
     name: "Mohammed Akhlakh",
     role: "Co-Founder & Senior Trainer",
     bio: "A passionate movement specialist who combines athletic precision with mindful coaching to make complex movements accessible.",
-    image: "/media/instructors/instructor-akhlekh.jpg",
+    image: akhlekhImg,
   },
   {
     name: "Karan Bir Singh",
     role: "Co-Founder & Senior Trainer",
     bio: "Karan's holistic approach integrates strength, flexibility, and mindfulness into a seamless practice that unlocks your potential.",
-    image: "/media/instructors/instructor-karan.jpg",
+    image: karanImg,
   },
-] as const;
+];
 
 // ─── FAQs ────────────────────────────────────────────────────────────────────
 
@@ -202,11 +206,9 @@ export const FAQS = [
 
 // ─── Gallery ─────────────────────────────────────────────────────────────────
 
-const galleryGlob = import.meta.glob('/public/media/gallery/*.{jpg,JPG,jpeg,JPEG,png,PNG,mp4,webm}', { eager: true });
+const galleryGlob = import.meta.glob('@/assets/media/gallery/*.{jpg,JPG,jpeg,JPEG,png,PNG,mp4,webm}', { eager: true, import: 'default' });
 
-export const STUDIO_MEDIA = Object.keys(galleryGlob).map((filePath) => {
-  // Vite returns paths like /public/media/gallery/1.jpg. We serve from /media/...
-  const publicUrl = filePath.replace('/public', '');
-  const type = publicUrl.toLowerCase().match(/\.(mp4|webm)$/) ? "video" : "image";
-  return { type, src: publicUrl };
+export const STUDIO_MEDIA = Object.entries(galleryGlob).map(([filePath, url]) => {
+  const type = filePath.toLowerCase().match(/\.(mp4|webm)$/) ? "video" : "image";
+  return { type, src: url as string };
 });

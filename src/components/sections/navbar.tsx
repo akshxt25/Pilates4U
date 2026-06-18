@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NAV_ITEMS, BUSINESS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import logoImg from "@/assets/media/logo/logo.jpeg";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -55,7 +56,7 @@ export function Navbar() {
             className="flex items-center gap-3 group"
           >
             <img
-              src="/media/logo/logo.jpeg"
+              src={logoImg}
               alt="Pilates For You Logo"
               className="h-10 w-10 rounded-full object-cover"
             />

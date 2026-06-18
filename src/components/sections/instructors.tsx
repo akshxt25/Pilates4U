@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations";
 import { INSTRUCTORS } from "@/lib/constants";
+import teamImg from "@/assets/media/instructors/Meet-the-team.jpeg";
 
 export function Instructors() {
   return (
@@ -73,8 +74,8 @@ export function Instructors() {
         >
           <div className="rounded-2xl overflow-hidden max-w-2xl w-full">
             <img
-              src="/media/instructors/Meet-the-team.jpeg"
-              alt="The Pilates For You Team"
+              src={teamImg}
+              alt="Pilates For You Team"
               className="w-full h-auto object-cover"
             />
           </div>
