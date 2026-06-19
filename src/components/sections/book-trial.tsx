@@ -8,6 +8,7 @@ import {
   Calendar,
   Clock,
   User,
+  Users,
   CheckCircle,
   ArrowRight,
   Sparkles,
@@ -90,6 +91,8 @@ export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [sessionType, setSessionType] = useState<SessionKey>("group");
+  const [membersCount, setMembersCount] = useState<number>(1);
+  const [memberNames, setMemberNames] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -105,6 +108,10 @@ export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } 
     const err: Record<string, string> = {};
     if (!name.trim()) err.name = "Please enter your name";
     if (!normalizePhone(phone)) err.phone = "Enter a valid 10-digit mobile number";
+    if (sessionType === "group") {
+      if (!membersCount || membersCount < 2) err.membersCount = "Group sessions require at least 2 members";
+      if (!memberNames.trim()) err.memberNames = "Please enter the names of all members";
+    }
     if (!selectedDate) err.date = "Please select a date";
     if (!selectedSlot) err.slot = "Please choose a time slot";
     return err;
@@ -130,7 +137,9 @@ export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } 
       formParams.append("Name", name.trim());
       formParams.append("Phone", normalizePhone(phone));
       formParams.append("SessionType", session.label);
-      formParams.append("Fee", session.fee.toString());
+      formParams.append("Members", sessionType === "group" ? membersCount.toString() : "1");
+      formParams.append("MemberNames", sessionType === "group" ? memberNames.trim() : "");
+      formParams.append("Fee", sessionType === "group" ? (session.fee * (membersCount || 1)).toString() : session.fee.toString());
       formParams.append("Date", selectedDate);
       formParams.append("Time", selectedSlot);
 
@@ -277,7 +286,10 @@ export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } 
                           <button
                             key={s.key}
                             type="button"
-                            onClick={() => setSessionType(s.key)}
+                            onClick={() => {
+                              setSessionType(s.key);
+                              if (s.key !== "group") setMembersCount(1);
+                            }}
                             className={`relative rounded-xl border px-3 sm:px-4 py-3 sm:py-3.5 text-left transition-all duration-300 min-w-0 w-full ${
                               sessionType === s.key
                                 ? "border-champagne bg-champagne/10 shadow-sm"
@@ -302,10 +314,65 @@ export function BookTrial({ onSubmitSuccess }: { onSubmitSuccess?: () => void } 
                         ))}
                       </div>
                       <p className="text-xs text-warm-gray mt-2">
-                        {activeSession.label} trial fee: ₹{activeSession.fee}.
+                        {activeSession.label} trial fee: ₹{activeSession.fee}{sessionType === "group" && membersCount > 1 ? ` × ${membersCount} = ₹${activeSession.fee * membersCount}` : ""}.
                         If you enrol on the same day, the trial fee will be
                         adjusted in your membership.
                       </p>
+
+                      {sessionType === "group" && (
+                        <AnimatePresence>
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="mt-4"
+                          >
+                            <label className="flex items-center gap-2 text-sm font-medium text-charcoal mb-2">
+                              <Users className="w-4 h-4 text-champagne" />
+                              Number of Members
+                            </label>
+                            <input
+                              type="text"
+                              inputMode="numeric"
+                              value={membersCount || ""}
+                              onChange={(e) => {
+                                const val = parseInt(e.target.value.replace(/\D/g, ""));
+                                setMembersCount(isNaN(val) ? 0 : val);
+                                setErrors((p) => ({ ...p, membersCount: "" }));
+                              }}
+                              placeholder="e.g. 2"
+                              className="w-full sm:w-1/2 min-w-0 rounded-xl border border-sand bg-ivory px-4 py-3 text-base sm:text-sm text-charcoal placeholder:text-warm-gray-light focus:outline-none focus:ring-2 focus:ring-champagne/40 focus:border-champagne transition-all"
+                            />
+                            {errors.membersCount && (
+                              <p className="text-xs text-red-500 mt-1.5">
+                                {errors.membersCount}
+                              </p>
+                            )}
+
+                            <div className="mt-4">
+                              <label className="flex items-center gap-2 text-sm font-medium text-charcoal mb-2">
+                                <User className="w-4 h-4 text-champagne" />
+                                Names of Members
+                              </label>
+                              <input
+                                type="text"
+                                value={memberNames}
+                                onChange={(e) => {
+                                  setMemberNames(e.target.value);
+                                  setErrors((p) => ({ ...p, memberNames: "" }));
+                                }}
+                                placeholder="Enter names separated by commas"
+                                className="w-full min-w-0 rounded-xl border border-sand bg-ivory px-4 py-3 text-base sm:text-sm text-charcoal placeholder:text-warm-gray-light focus:outline-none focus:ring-2 focus:ring-champagne/40 focus:border-champagne transition-all"
+                              />
+                              {errors.memberNames && (
+                                <p className="text-xs text-red-500 mt-1.5">
+                                  {errors.memberNames}
+                                </p>
+                              )}
+                            </div>
+                          </motion.div>
+                        </AnimatePresence>
+                      )}
                     </div>
 
                     {/* Date Selection */}
