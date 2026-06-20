@@ -90,12 +90,21 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-4 p-3 -ml-3">
-                <div className="w-10 h-10 rounded-full bg-champagne/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-champagne/10 flex items-center justify-center flex-shrink-0 mt-1">
                   <MapPin className="w-4 h-4 text-champagne" />
                 </div>
                 <div>
                   <p className="text-[10px] text-ivory/40 uppercase tracking-wider mb-0.5">Address</p>
                   <p className="text-sm text-ivory/70 leading-relaxed pr-4">{BUSINESS.address}</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-4 p-3 -ml-3 pt-4 border-t border-ivory/10">
+                <div className="w-10 h-10 rounded-full bg-champagne/10 flex items-center justify-center flex-shrink-0 mt-1">
+                  <MapPin className="w-4 h-4 text-champagne" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-ivory/40 uppercase tracking-wider mb-0.5">You can also find us at</p>
+                  <p className="text-sm text-ivory/70 leading-relaxed pr-4">{BUSINESS.address2}</p>
                 </div>
               </li>
             </ul>

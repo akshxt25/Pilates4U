@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NAV_ITEMS, BUSINESS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import logoImg from "@/assets/media/logo/logo.jpeg";
+import logoImg from "@/assets/media/logo/logo.jpg";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -55,11 +55,13 @@ export function Navbar() {
             onClick={(e) => { e.preventDefault(); handleNav("#home"); }}
             className="flex items-center gap-3 group"
           >
-            <img
-              src={logoImg}
-              alt="Pilates For You Logo"
-              className="h-10 w-10 rounded-full object-cover"
-            />
+            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full flex items-center justify-center">
+              <img
+                src={logoImg}
+                alt="Pilates For You Logo"
+                className="h-full w-full object-cover scale-[1.45] -translate-x-[2%] translate-y-[2%]"
+              />
+            </div>
             <div className="flex flex-col">
               <span className={cn(
                 "font-heading text-xl font-semibold tracking-wide transition-colors",

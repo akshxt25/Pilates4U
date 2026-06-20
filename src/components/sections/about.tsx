@@ -62,10 +62,10 @@ export function About() {
             <div className="mt-10 grid grid-cols-3 gap-4 sm:gap-6">
               {[
                 { value: "Holistic Wellness", label: "Strength • Mobility • Recovery" },
-                { value: "3 Founders", label: "Physiotherapists & Pilates Experts" },
+                { value: <><span className="sm:hidden">3<br />Founders</span><span className="hidden sm:inline">3 Founders</span></>, label: "Physiotherapists & Pilates Experts" },
                 { value: "Expert Guidance", label: "For Every Goal and Ability" },
-              ].map((stat) => (
-                <div key={stat.label}>
+              ].map((stat, index) => (
+                <div key={index}>
                   <span className="block w-6 h-0.5 bg-champagne mb-3" />
                   <p className="font-heading text-base sm:text-lg font-semibold text-charcoal leading-snug">
                     {stat.value}
